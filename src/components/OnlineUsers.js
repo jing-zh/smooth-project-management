@@ -4,12 +4,13 @@ import Avatar from "./Avatar";
 import "./OnlineUsers.css";
 
 export default function OnlineUsers() {
-  const { error, documents } = useCollection("users");
+  const { isPending, error, documents } = useCollection("users");
 
   return (
     <div className="user-list">
       <h2>All Users</h2>
-      {error && <div className="error">{error}</div>}
+      {isPending && <div>Loading users...</div>}
+      {error && <div>{error}</div>}
       {documents &&
         documents.map((user) => (
           <div key={user.id} className="user-list-item">

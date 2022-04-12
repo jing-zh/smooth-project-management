@@ -19,6 +19,7 @@ export default function Signup() {
   const handleFileChange = (e) => {
     setThumbnail(null);
     let selected = e.target.files[0];
+    console.log(selected);
 
     if (!selected) {
       setThumbnailError("Please select a file");
@@ -31,13 +32,14 @@ export default function Signup() {
       return;
     }
 
-    if (selected.size > 100000) {
-      setThumbnailError("Image file size must be less than 100kb");
+    if (selected.size > 1000000) {
+      setThumbnailError("Image file size must be less than 1mb");
       return;
     }
 
     setThumbnailError(null);
     setThumbnail(selected);
+    console.log("thumbnail updated");
   };
 
   return (
