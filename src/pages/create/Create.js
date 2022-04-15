@@ -4,7 +4,7 @@ import { useCollection } from "../../hooks/useCollection";
 import { timestamp } from "../../firebase/config";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useFirestore } from "../../hooks/useFirestore";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // styles
 import "./Create.css";
@@ -17,7 +17,7 @@ const categories = [
 ];
 
 export default function Create() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { addDocument, response } = useFirestore("projects");
   const { documents } = useCollection("users");
   const [users, setUsers] = useState([]);
@@ -79,7 +79,7 @@ export default function Create() {
 
     await addDocument(project);
     if (!response.error) {
-      history.push("/");
+      navigate("/");
     }
   };
 
